@@ -29,8 +29,6 @@
     
     BOOL above;
     
-    id<PopoverViewDelegate> delegate;
-    
     UIView *parentView;
     
     UIView *topView;
@@ -49,18 +47,20 @@
     BOOL showDividerRects;
 }
 
-@property (nonatomic, retain) UIView *titleView;
+@property (nonatomic, strong) UIView *titleView;
 
-@property (nonatomic, retain) UIView *contentView;
+@property (nonatomic, strong) UIView *contentView;
 
-@property (nonatomic, retain) NSArray *subviewsArray;
+@property (nonatomic, strong) NSArray *subviewsArray;
 
-@property (nonatomic, assign) id<PopoverViewDelegate> delegate;
+@property (nonatomic, weak) id<PopoverViewDelegate> delegate;
 
 #pragma mark - Class Static Showing Methods
 
 //These are the main static methods you can use to display the popover.
 //Simply call [PopoverView show...] with your arguments, and the popover will be generated, added to the view stack, and notify you when it's done.
+
++ (PopoverView *)showPopoverAtPoint:(CGPoint)point inView:(UIView *)view withText:(NSString *)text forTime:(float)seconds;
 
 + (PopoverView *)showPopoverAtPoint:(CGPoint)point inView:(UIView *)view withText:(NSString *)text delegate:(id<PopoverViewDelegate>)delegate;
 
